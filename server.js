@@ -43,10 +43,18 @@ function createAndSaveUser(username, done) {
     })
 }
 
+function getAllUsers(done) {
+    
+}
+
 // POTENTIALLY SHOULD BE SEPERATED (THESE ARE THE ROUTES ACCESSED BY THE APP)
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
+})
+
+app.get("/api/users", (req, res) => {
+
 })
 
 app.post("/api/users", (req, res, next) => {
