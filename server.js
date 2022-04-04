@@ -38,7 +38,7 @@ function createAndSaveUser(username, done) {
     let user = new User({
         username: username
     })
-    person.save((err, data) => {
+    user.save((err, data) => {
         done(null, data)
     })
 }
@@ -46,7 +46,14 @@ function createAndSaveUser(username, done) {
 // POTENTIALLY SHOULD BE SEPERATED (THESE ARE THE ROUTES ACCESSED BY THE APP)
 
 app.get("/", (req, res) => {
-    res.send("Hello World")
+    res.sendFile(__dirname + "/views/index.html");
+})
+
+app.post("/api/users", (req, res, next) => {
+    console.log(req.body.username)
+    createAndSaveUser(req.body.username, (err, data) => {
+        return next(data)
+    })
 })
 
 const listener = app.listen(process.env.PORT || 3000, function () {
