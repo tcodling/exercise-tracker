@@ -12,7 +12,10 @@ const userSchema = new Schema({
 }, {versionKey: false})
 
 const exerciseSchema = new Schema({
-    username: {type: String, required: true}
+    // id: {type: Object},
+    duration: {type: Number},
+    description: {type: String},
+    date: {type: String}
 }, {versionKey: false})
 
 let User = mongoose.model("User", userSchema)
@@ -20,7 +23,7 @@ let Exercise = mongoose.model("Exercise", exerciseSchema)
 
 
 // DATABASE FUNCTIONS
-function createAndSaveUser(username, done) {
+function createUser(username, done) {
     let user = new User({
         username: username
     })
@@ -37,6 +40,21 @@ function getAllUsers(done) {
     })
 }
 
+function createExercise(requestData, done) {
+    let exercise = new Exercise({
+        // _id: requestData._id,
+        duration: requestData.duration,
+        description: requestData.description,
+        date: requestData.date
 
-exports.createUser = createAndSaveUser;
+    })
+    console.log(exercise)
+    // exercise.save((err, data) => {
+    //     done(null, data)
+    // })
+}
+
+// EXPORTS
+exports.createUser = createUser;
 exports.getAllUsers = getAllUsers
+exports.createExercise = createExercise

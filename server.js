@@ -27,8 +27,10 @@ app.post("/api/users", (req, res, next) => {
 })
 
 app.post("/api/users/:_id/exercises", (req, res, next) => {
-    // database.createExercise()
-    console.log("POSTING EXERCISE TO ID: " + req.params._id)
+    database.createExercise(req.body, (err, data) => {
+        console.log(data)
+        return next(data)
+    })
 })
 
 // LISTENER
