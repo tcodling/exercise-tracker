@@ -7,9 +7,23 @@
     <title>Exercise Tracker</title>
 </head>
 <body>
+    <h2>Add a new user</h2>
     <form method="POST" action="/api/users">
         <label>Enter your username</label><br>
         <input type="text" name="username" />
+    </form>
+
+    <h2>Add a new exercise</h2>
+    <form id="exercise-form" method="POST" action="/api/users/:_id/exercises">
+        <label>_id</label><br>
+        <input type="text" id="id-input" name="_id" /><br>
+        <label>Duration</label><br>
+        <input type="text" name="description" /><br>
+        <label>Duration</label><br>
+        <input type="text" name="duration" /><br>
+        <label>Date</label><br>
+        <input type="text" name="date" /><br>
+        <input type = submit onclick="this.form.action=`/api/users/${document.getElementById('id-input').value}/exercises`" />
     </form>
 </body>
 </html>
