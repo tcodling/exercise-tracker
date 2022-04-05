@@ -26,6 +26,11 @@ app.post("/api/users", (req, res, next) => {
     })
 })
 
+app.post("/api/users/:_id/exercises", (req, res, next) => {
+    // database.createExercise()
+    console.log("POSTING EXERCISE TO ID: " + req.params._id)
+})
+
 // LISTENER
 const listener = app.listen(process.env.PORT || 3000, function () {
     console.log("Your app is listening on port " + listener.address().port);
