@@ -22,14 +22,24 @@ app.get("/api/users", (req, res, next) => {
 
 app.post("/api/users", (req, res, next) => {
     database.createUser(req.body.username, (err, data) => {
+        console.log(data)
         return next(data)
     })
 })
 
 app.post("/api/users/:_id/exercises", (req, res, next) => {
-    database.createExercise(req.body, (err, data) => {
+    console.log(req.params._id)
+    database.getUserById(Number(req.params._id), (err, data) => {
         console.log(data)
-        return next(data)
+    })
+    database.createExercise(req.body, (err, data) => {
+        res.json({
+            username: "USERNAME",
+            description: data.description,
+            duration: data.duration,
+            date: data.date
+        })
+        // NO NEXT FUNCTION?
     })
 })
 
